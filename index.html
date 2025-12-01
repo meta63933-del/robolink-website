@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* Premium Animated Background */
+        /* Advanced Background Canvas */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -31,311 +31,62 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
-            background: radial-gradient(ellipse at top, #0a0a1e 0%, #030712 50%, #000000 100%);
         }
 
-        /* Large animated gradient orbs */
-        .bg-gradient {
+        #bgCanvas {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
         }
 
-        .gradient-orb {
+        /* Gradient overlay for depth */
+        .gradient-overlay {
             position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0.05) 40%, transparent 70%);
-            animation: orbFloat 20s ease-in-out infinite;
-        }
-
-        .gradient-orb:nth-child(1) {
-            width: 600px;
-            height: 600px;
-            top: -200px;
-            right: -100px;
-            animation-duration: 25s;
-        }
-
-        .gradient-orb:nth-child(2) {
-            width: 500px;
-            height: 500px;
-            bottom: -150px;
-            left: -100px;
-            animation-duration: 30s;
-            animation-delay: 5s;
-        }
-
-        .gradient-orb:nth-child(3) {
-            width: 400px;
-            height: 400px;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-duration: 35s;
-            animation-delay: 10s;
-        }
-
-        @keyframes orbFloat {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            33% {
-                transform: translate(50px, -50px) scale(1.1);
-                opacity: 0.8;
-            }
-            66% {
-                transform: translate(-30px, 30px) scale(0.95);
-                opacity: 0.9;
-            }
-        }
-
-        /* Refined grid with perspective */
-        .grid-overlay {
-            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(168, 85, 247, 0.06) 1.5px, transparent 1.5px),
-                linear-gradient(90deg, rgba(168, 85, 247, 0.06) 1.5px, transparent 1.5px);
-            background-size: 80px 80px;
-            transform: perspective(1000px) rotateX(60deg) scale(2);
-            transform-origin: center center;
-            opacity: 0.4;
+            background: radial-gradient(ellipse at top, rgba(26, 10, 46, 0.8) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom right, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom left, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        /* Geometric shapes */
-        .particle {
+        /* Scanline effect */
+        .scanlines {
             position: absolute;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.8) 0%, rgba(147, 51, 234, 0.4) 100%);
-            animation: shapeFloat 15s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(168, 85, 247, 0.03) 0px,
+                transparent 1px,
+                transparent 2px,
+                rgba(168, 85, 247, 0.03) 3px
+            );
+            animation: scanlineMove 8s linear infinite;
+            pointer-events: none;
+            opacity: 0.3;
         }
 
-        /* Hexagons */
-        .particle:nth-child(1) {
-            width: 40px;
-            height: 40px;
-            top: 15%;
-            left: 15%;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            animation-duration: 20s;
+        @keyframes scanlineMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(20px); }
         }
 
-        .particle:nth-child(2) {
-            width: 50px;
-            height: 50px;
-            top: 60%;
-            right: 20%;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            animation-duration: 25s;
-            animation-delay: 5s;
-        }
-
-        /* Triangles */
-        .particle:nth-child(3) {
-            width: 45px;
-            height: 45px;
-            bottom: 20%;
-            left: 40%;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation-duration: 22s;
-            animation-delay: 8s;
-        }
-
-        /* Diamonds */
-        .particle:nth-child(4) {
-            width: 35px;
-            height: 35px;
-            top: 40%;
-            right: 30%;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            animation-duration: 28s;
-            animation-delay: 3s;
-        }
-
-        .particle:nth-child(5) {
-            width: 38px;
-            height: 38px;
-            top: 70%;
-            left: 60%;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            animation-duration: 24s;
-            animation-delay: 12s;
-        }
-
-        @keyframes shapeFloat {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 0.6;
-            }
-            25% {
-                transform: translate(60px, -80px) rotate(90deg);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translate(-40px, 40px) rotate(180deg);
-                opacity: 0.7;
-            }
-            75% {
-                transform: translate(80px, 60px) rotate(270deg);
-                opacity: 0.9;
-            }
-        }
-
-        /* Light beams */
-        .glow-orb {
+        /* Vignette effect */
+        .vignette {
             position: absolute;
-            width: 3px;
-            height: 200px;
-            background: linear-gradient(to bottom, 
-                transparent 0%, 
-                rgba(168, 85, 247, 0.4) 20%, 
-                rgba(168, 85, 247, 0.6) 50%, 
-                rgba(168, 85, 247, 0.4) 80%, 
-                transparent 100%);
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-            animation: beamMove 12s ease-in-out infinite;
-        }
-
-        .glow-orb:nth-child(6) {
-            top: -100px;
-            left: 20%;
-            transform: rotate(25deg);
-            animation-delay: 0s;
-        }
-
-        .glow-orb:nth-child(7) {
-            top: 30%;
-            right: 15%;
-            height: 250px;
-            transform: rotate(-15deg);
-            animation-delay: 6s;
-        }
-
-        @keyframes beamMove {
-            0%, 100% {
-                transform: translateY(0) rotate(25deg);
-                opacity: 0.5;
-            }
-            50% {
-                transform: translateY(150px) rotate(25deg);
-                opacity: 0.8;
-            }
-        }
-
-        /* Flowing lines */
-        .accent-line {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(to right, 
-                transparent 0%, 
-                rgba(168, 85, 247, 0.6) 30%, 
-                rgba(192, 132, 252, 0.8) 50%, 
-                rgba(168, 85, 247, 0.6) 70%, 
-                transparent 100%);
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
-            animation: lineFlow 20s linear infinite;
-        }
-
-        .accent-line:nth-child(8) {
-            width: 400px;
-            top: 20%;
-            left: -400px;
-        }
-
-        .accent-line:nth-child(9) {
-            width: 500px;
-            top: 55%;
-            right: -500px;
-            animation-delay: 10s;
-        }
-
-        .accent-line:nth-child(10) {
-            width: 350px;
-            top: 80%;
-            left: -350px;
-            animation-delay: 15s;
-        }
-
-        @keyframes lineFlow {
-            0% {
-                transform: translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(calc(100vw + 500px));
-                opacity: 0;
-            }
-        }
-
-        /* Subtle pulsing nodes */
-        .glow-spot {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: rgba(168, 85, 247, 0.9);
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.8),
-                        0 0 40px rgba(168, 85, 247, 0.4);
-            animation: nodePulse 3s ease-in-out infinite;
-        }
-
-        .glow-spot:nth-child(11) {
-            top: 25%;
-            left: 30%;
-            animation-delay: 0s;
-        }
-
-        .glow-spot:nth-child(12) {
-            top: 65%;
-            right: 25%;
-            animation-delay: 1s;
-        }
-
-        @keyframes nodePulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.6;
-            }
-            50% {
-                transform: scale(1.5);
-                opacity: 1;
-            }
-        }
-
-        /* Connecting lines between nodes */
-        .connect-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(to right, 
-                rgba(168, 85, 247, 0) 0%,
-                rgba(168, 85, 247, 0.3) 50%,
-                rgba(168, 85, 247, 0) 100%);
-            animation: lineGrow 4s ease-in-out infinite;
-        }
-
-        .connect-line:nth-child(13) {
-            width: 200px;
-            top: 25%;
-            left: calc(30% + 8px);
-            transform-origin: left center;
-        }
-
-        @keyframes lineGrow {
-            0%, 100% {
-                transform: scaleX(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scaleX(1);
-                opacity: 1;
-            }
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
         }
 
         html {
@@ -1051,40 +802,12 @@
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
+    <!-- Advanced Canvas-Based Background -->
     <div class="animated-bg">
-        <!-- Large gradient orbs -->
-        <div class="bg-gradient">
-            <div class="gradient-orb"></div>
-            <div class="gradient-orb"></div>
-            <div class="gradient-orb"></div>
-        </div>
-        
-        <!-- Perspective grid -->
-        <div class="grid-overlay"></div>
-        
-        <!-- Geometric shapes -->
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        
-        <!-- Light beams -->
-        <div class="glow-orb"></div>
-        <div class="glow-orb"></div>
-        
-        <!-- Flowing lines -->
-        <div class="accent-line"></div>
-        <div class="accent-line"></div>
-        <div class="accent-line"></div>
-        
-        <!-- Pulsing nodes -->
-        <div class="glow-spot"></div>
-        <div class="glow-spot"></div>
-        
-        <!-- Connection line -->
-        <div class="connect-line"></div>
+        <canvas id="bgCanvas"></canvas>
+        <div class="gradient-overlay"></div>
+        <div class="scanlines"></div>
+        <div class="vignette"></div>
     </div>
 
     <!-- Navigation -->
@@ -1513,24 +1236,352 @@
             });
         });
 
-        // Smooth Parallax Effect
-        let ticking = false;
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const scrollY = window.scrollY;
-                    const grid = document.querySelector('.grid-overlay');
-                    
-                    if (grid) {
-                        grid.style.transform = `translate(${scrollY * 0.05}px, ${scrollY * 0.05}px)`;
-                    }
-                    
-                    ticking = false;
-                });
-                ticking = true;
-            }
+        // Advanced Particle Network System
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
         });
+
+        // Particle class
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.3; // Slower movement
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.radius = Math.random() * 1.5 + 0.8; // Smaller particles
+                this.opacity = Math.random() * 0.3 + 0.15; // Lower opacity
+                this.hue = 270 + Math.random() * 30; // Purple hues
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Boundary check
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                // Add some drift
+                this.vx += (Math.random() - 0.5) * 0.01; // Less drift
+                this.vy += (Math.random() - 0.5) * 0.01;
+
+                // Limit velocity
+                const maxSpeed = 0.8; // Slower max speed
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (speed > maxSpeed) {
+                    this.vx = (this.vx / speed) * maxSpeed;
+                    this.vy = (this.vy / speed) * maxSpeed;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${this.opacity})`;
+                ctx.fill();
+
+                // Subtle glow effect
+                ctx.shadowBlur = 6; // Less blur
+                ctx.shadowColor = `hsla(${this.hue}, 70%, 60%, ${this.opacity * 0.5})`;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        // Data Stream class
+        class DataStream {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = -20;
+                this.speed = Math.random() * 1.5 + 0.8; // Slower
+                this.length = Math.random() * 80 + 40; // Shorter
+                this.opacity = Math.random() * 0.15 + 0.05; // More subtle
+                this.hue = 270 + Math.random() * 30;
+            }
+
+            update() {
+                this.y += this.speed;
+                if (this.y > height + this.length) {
+                    this.y = -this.length;
+                    this.x = Math.random() * width;
+                }
+            }
+
+            draw() {
+                const gradient = ctx.createLinearGradient(this.x, this.y - this.length, this.x, this.y);
+                gradient.addColorStop(0, `hsla(${this.hue}, 70%, 60%, 0)`);
+                gradient.addColorStop(0.5, `hsla(${this.hue}, 70%, 60%, ${this.opacity})`);
+                gradient.addColorStop(1, `hsla(${this.hue}, 70%, 60%, 0)`);
+
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y - this.length);
+                ctx.lineTo(this.x, this.y);
+                ctx.stroke();
+            }
+        }
+
+        // Neural Node class
+        class NeuralNode {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.2; // Slower
+                this.vy = (Math.random() - 0.5) * 0.2;
+                this.radius = Math.random() * 2 + 1.5; // Smaller
+                this.pulsePhase = Math.random() * Math.PI * 2;
+                this.pulseSpeed = 0.015; // Slower pulse
+                this.hue = 270 + Math.random() * 30;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                this.pulsePhase += this.pulseSpeed;
+            }
+
+            draw() {
+                const pulse = Math.sin(this.pulsePhase) * 0.5 + 0.5;
+                const size = this.radius + pulse * 1.5; // Less pulse range
+                const opacity = 0.2 + pulse * 0.3; // Lower opacity
+
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${this.hue}, 80%, 65%, ${opacity})`;
+                ctx.fill();
+
+                // Outer glow - more subtle
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, size + 3, 0, Math.PI * 2);
+                ctx.strokeStyle = `hsla(${this.hue}, 80%, 65%, ${opacity * 0.2})`;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                // Inner glow - reduced
+                ctx.shadowBlur = 12; // Less blur
+                ctx.shadowColor = `hsla(${this.hue}, 80%, 65%, ${opacity * 0.6})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        // Wave class
+        class Wave {
+            constructor() {
+                this.y = Math.random() * height;
+                this.amplitude = Math.random() * 20 + 15; // Smaller waves
+                this.frequency = Math.random() * 0.008 + 0.004; // Gentler waves
+                this.speed = Math.random() * 0.015 + 0.008; // Slower
+                this.phase = Math.random() * Math.PI * 2;
+                this.opacity = Math.random() * 0.06 + 0.03; // Much more subtle
+                this.hue = 270 + Math.random() * 30;
+            }
+
+            update() {
+                this.phase += this.speed;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.moveTo(0, this.y);
+
+                for (let x = 0; x <= width; x += 5) {
+                    const y = this.y + Math.sin(x * this.frequency + this.phase) * this.amplitude;
+                    ctx.lineTo(x, y);
+                }
+
+                ctx.strokeStyle = `hsla(${this.hue}, 70%, 60%, ${this.opacity})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        // Initialize arrays
+        let particles = [];
+        let dataStreams = [];
+        let neuralNodes = [];
+        let waves = [];
+
+        function initParticles() {
+            particles = [];
+            dataStreams = [];
+            neuralNodes = [];
+            waves = [];
+
+            // Create particles (80 - was 150)
+            for (let i = 0; i < 80; i++) {
+                particles.push(new Particle());
+            }
+
+            // Create data streams (8 - was 20)
+            for (let i = 0; i < 8; i++) {
+                dataStreams.push(new DataStream());
+            }
+
+            // Create neural nodes (15 - was 30)
+            for (let i = 0; i < 15; i++) {
+                neuralNodes.push(new NeuralNode());
+            }
+
+            // Create waves (3 - was 5)
+            for (let i = 0; i < 3; i++) {
+                waves.push(new Wave());
+            }
+        }
+
+        // Draw connections between particles
+        function drawConnections() {
+            const maxDistance = 180; // Increased from 150
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = (1 - distance / maxDistance) * 0.08; // Reduced from 0.15
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(168, 85, 247, ${opacity})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Draw neural connections
+        function drawNeuralConnections() {
+            const maxDistance = 250; // Increased from 200
+
+            for (let i = 0; i < neuralNodes.length; i++) {
+                for (let j = i + 1; j < neuralNodes.length; j++) {
+                    const dx = neuralNodes[i].x - neuralNodes[j].x;
+                    const dy = neuralNodes[i].y - neuralNodes[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = (1 - distance / maxDistance) * 0.2; // Reduced from 0.3
+                        
+                        // Animated flow
+                        const flowPhase = (Date.now() * 0.001 + i + j) % 1;
+                        const gradient = ctx.createLinearGradient(
+                            neuralNodes[i].x, neuralNodes[i].y,
+                            neuralNodes[j].x, neuralNodes[j].y
+                        );
+                        
+                        gradient.addColorStop(0, `rgba(168, 85, 247, ${opacity * 0.3})`);
+                        gradient.addColorStop(flowPhase, `rgba(192, 132, 252, ${opacity})`);
+                        gradient.addColorStop(1, `rgba(168, 85, 247, ${opacity * 0.3})`);
+
+                        ctx.beginPath();
+                        ctx.moveTo(neuralNodes[i].x, neuralNodes[i].y);
+                        ctx.lineTo(neuralNodes[j].x, neuralNodes[j].y);
+                        ctx.strokeStyle = gradient;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Mouse interaction
+        let mouse = { x: null, y: null, radius: 150 };
+
+        canvas.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function handleMouseInteraction() {
+            if (mouse.x === null || mouse.y === null) return;
+
+            particles.forEach(particle => {
+                const dx = mouse.x - particle.x;
+                const dy = mouse.y - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouse.radius) {
+                    const force = (mouse.radius - distance) / mouse.radius;
+                    const angle = Math.atan2(dy, dx);
+                    particle.vx -= Math.cos(angle) * force * 0.2;
+                    particle.vy -= Math.sin(angle) * force * 0.2;
+                }
+            });
+
+            // Draw mouse influence
+            ctx.beginPath();
+            ctx.arc(mouse.x, mouse.y, mouse.radius, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(168, 85, 247, 0.1)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        // Animation loop
+        function animate() {
+            // Faster fade effect for cleaner look
+            ctx.fillStyle = 'rgba(3, 7, 18, 0.15)'; // Increased from 0.1
+            ctx.fillRect(0, 0, width, height);
+
+            // Draw waves first (background layer)
+            waves.forEach(wave => {
+                wave.update();
+                wave.draw();
+            });
+
+            // Draw connections
+            drawConnections();
+            drawNeuralConnections();
+
+            // Draw data streams
+            dataStreams.forEach(stream => {
+                stream.update();
+                stream.draw();
+            });
+
+            // Draw particles
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Draw neural nodes
+            neuralNodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+
+            // Mouse interaction
+            handleMouseInteraction();
+
+            requestAnimationFrame(animate);
+        }
+
+        // Initialize and start
+        initParticles();
+        animate();
     </script>
 </body>
 </html>
