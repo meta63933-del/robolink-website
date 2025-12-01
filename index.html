@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* Clean Animated Background */
+        /* Premium Animated Background */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -31,219 +31,310 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            background: radial-gradient(ellipse at top, #0a0a1e 0%, #030712 50%, #000000 100%);
         }
 
-        /* Smooth gradient waves */
+        /* Large animated gradient orbs */
         .bg-gradient {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(135deg, transparent 0%, rgba(147, 51, 234, 0.05) 50%, transparent 100%),
-                linear-gradient(45deg, rgba(168, 85, 247, 0.03) 0%, transparent 50%);
-            animation: gradientShift 20s ease infinite;
         }
 
-        @keyframes gradientShift {
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0.05) 40%, transparent 70%);
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+
+        .gradient-orb:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            top: -200px;
+            right: -100px;
+            animation-duration: 25s;
+        }
+
+        .gradient-orb:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            bottom: -150px;
+            left: -100px;
+            animation-duration: 30s;
+            animation-delay: 5s;
+        }
+
+        .gradient-orb:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 35s;
+            animation-delay: 10s;
+        }
+
+        @keyframes orbFloat {
             0%, 100% {
+                transform: translate(0, 0) scale(1);
                 opacity: 1;
             }
-            50% {
-                opacity: 0.6;
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+                opacity: 0.8;
+            }
+            66% {
+                transform: translate(-30px, 30px) scale(0.95);
+                opacity: 0.9;
             }
         }
 
-        /* Animated grid lines */
+        /* Refined grid with perspective */
         .grid-overlay {
             position: absolute;
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
-            background-size: 100px 100px;
-            animation: gridScroll 30s linear infinite;
+                linear-gradient(rgba(168, 85, 247, 0.06) 1.5px, transparent 1.5px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.06) 1.5px, transparent 1.5px);
+            background-size: 80px 80px;
+            transform: perspective(1000px) rotateX(60deg) scale(2);
+            transform-origin: center center;
+            opacity: 0.4;
         }
 
-        @keyframes gridScroll {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(100px, 100px);
-            }
-        }
-
-        /* Floating dots - clean and sharp */
+        /* Geometric shapes */
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #a855f7;
-            border-radius: 50%;
-            opacity: 0;
-            animation: dotFloat 15s infinite;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.8) 0%, rgba(147, 51, 234, 0.4) 100%);
+            animation: shapeFloat 15s ease-in-out infinite;
         }
 
+        /* Hexagons */
         .particle:nth-child(1) {
-            top: 20%;
-            left: 20%;
-            animation-duration: 18s;
-            animation-delay: 0s;
+            width: 40px;
+            height: 40px;
+            top: 15%;
+            left: 15%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation-duration: 20s;
         }
 
         .particle:nth-child(2) {
+            width: 50px;
+            height: 50px;
             top: 60%;
-            right: 30%;
-            animation-duration: 22s;
+            right: 20%;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation-duration: 25s;
             animation-delay: 5s;
         }
 
+        /* Triangles */
         .particle:nth-child(3) {
-            bottom: 30%;
+            width: 45px;
+            height: 45px;
+            bottom: 20%;
             left: 40%;
-            animation-duration: 20s;
-            animation-delay: 10s;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation-duration: 22s;
+            animation-delay: 8s;
         }
 
+        /* Diamonds */
         .particle:nth-child(4) {
+            width: 35px;
+            height: 35px;
             top: 40%;
-            right: 20%;
-            animation-duration: 24s;
+            right: 30%;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation-duration: 28s;
             animation-delay: 3s;
         }
 
         .particle:nth-child(5) {
-            bottom: 50%;
+            width: 38px;
+            height: 38px;
+            top: 70%;
             left: 60%;
-            animation-duration: 19s;
-            animation-delay: 7s;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation-duration: 24s;
+            animation-delay: 12s;
         }
 
-        @keyframes dotFloat {
+        @keyframes shapeFloat {
             0%, 100% {
-                transform: translate(0, 0);
-                opacity: 0;
-            }
-            10% {
+                transform: translate(0, 0) rotate(0deg);
                 opacity: 0.6;
             }
-            50% {
-                transform: translate(100px, -100px);
+            25% {
+                transform: translate(60px, -80px) rotate(90deg);
                 opacity: 0.8;
             }
-            90% {
-                opacity: 0.6;
+            50% {
+                transform: translate(-40px, 40px) rotate(180deg);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translate(80px, 60px) rotate(270deg);
+                opacity: 0.9;
             }
         }
 
-        /* Aurora lines - smooth and sharp */
+        /* Light beams */
         .glow-orb {
             position: absolute;
-            width: 2px;
-            height: 400px;
-            background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.3), transparent);
-            animation: auroraMove 25s ease-in-out infinite;
+            width: 3px;
+            height: 200px;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(168, 85, 247, 0.4) 20%, 
+                rgba(168, 85, 247, 0.6) 50%, 
+                rgba(168, 85, 247, 0.4) 80%, 
+                transparent 100%);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            animation: beamMove 12s ease-in-out infinite;
         }
 
         .glow-orb:nth-child(6) {
-            top: -200px;
+            top: -100px;
             left: 20%;
+            transform: rotate(25deg);
             animation-delay: 0s;
-            transform: rotate(15deg);
         }
 
         .glow-orb:nth-child(7) {
             top: 30%;
-            right: 25%;
-            animation-delay: 8s;
-            transform: rotate(-20deg);
+            right: 15%;
+            height: 250px;
+            transform: rotate(-15deg);
+            animation-delay: 6s;
         }
 
-        @keyframes auroraMove {
+        @keyframes beamMove {
             0%, 100% {
-                transform: translateY(0) rotate(15deg);
-                opacity: 0.3;
+                transform: translateY(0) rotate(25deg);
+                opacity: 0.5;
             }
             50% {
-                transform: translateY(100px) rotate(15deg);
-                opacity: 0.6;
+                transform: translateY(150px) rotate(25deg);
+                opacity: 0.8;
             }
         }
 
-        /* Accent lines */
+        /* Flowing lines */
         .accent-line {
             position: absolute;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.4), transparent);
-            animation: lineSlide 15s ease-in-out infinite;
+            height: 2px;
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                rgba(168, 85, 247, 0.6) 30%, 
+                rgba(192, 132, 252, 0.8) 50%, 
+                rgba(168, 85, 247, 0.6) 70%, 
+                transparent 100%);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+            animation: lineFlow 20s linear infinite;
         }
 
         .accent-line:nth-child(8) {
-            width: 300px;
-            top: 15%;
-            left: -300px;
-            animation-delay: 0s;
+            width: 400px;
+            top: 20%;
+            left: -400px;
         }
 
         .accent-line:nth-child(9) {
-            width: 400px;
-            top: 45%;
-            right: -400px;
-            animation-delay: 7s;
+            width: 500px;
+            top: 55%;
+            right: -500px;
+            animation-delay: 10s;
         }
 
         .accent-line:nth-child(10) {
-            width: 250px;
-            top: 75%;
-            left: -250px;
-            animation-delay: 14s;
+            width: 350px;
+            top: 80%;
+            left: -350px;
+            animation-delay: 15s;
         }
 
-        @keyframes lineSlide {
+        @keyframes lineFlow {
             0% {
                 transform: translateX(0);
                 opacity: 0;
             }
-            50% {
+            10% {
+                opacity: 1;
+            }
+            90% {
                 opacity: 1;
             }
             100% {
-                transform: translateX(calc(100vw + 400px));
+                transform: translateX(calc(100vw + 500px));
                 opacity: 0;
             }
         }
 
-        /* Subtle glow spots - sharp edges */
+        /* Subtle pulsing nodes */
         .glow-spot {
             position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+            width: 8px;
+            height: 8px;
+            background: rgba(168, 85, 247, 0.9);
             border-radius: 50%;
-            animation: spotPulse 10s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.8),
+                        0 0 40px rgba(168, 85, 247, 0.4);
+            animation: nodePulse 3s ease-in-out infinite;
         }
 
         .glow-spot:nth-child(11) {
-            top: 10%;
-            right: 15%;
+            top: 25%;
+            left: 30%;
             animation-delay: 0s;
         }
 
         .glow-spot:nth-child(12) {
-            bottom: 20%;
-            left: 10%;
-            animation-delay: 5s;
+            top: 65%;
+            right: 25%;
+            animation-delay: 1s;
         }
 
-        @keyframes spotPulse {
+        @keyframes nodePulse {
             0%, 100% {
                 transform: scale(1);
-                opacity: 0.5;
+                opacity: 0.6;
             }
             50% {
                 transform: scale(1.5);
-                opacity: 0.8;
+                opacity: 1;
+            }
+        }
+
+        /* Connecting lines between nodes */
+        .connect-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(to right, 
+                rgba(168, 85, 247, 0) 0%,
+                rgba(168, 85, 247, 0.3) 50%,
+                rgba(168, 85, 247, 0) 100%);
+            animation: lineGrow 4s ease-in-out infinite;
+        }
+
+        .connect-line:nth-child(13) {
+            width: 200px;
+            top: 25%;
+            left: calc(30% + 8px);
+            transform-origin: left center;
+        }
+
+        @keyframes lineGrow {
+            0%, 100% {
+                transform: scaleX(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scaleX(1);
+                opacity: 1;
             }
         }
 
@@ -962,24 +1053,38 @@
 <body>
     <!-- Animated Background -->
     <div class="animated-bg">
-        <div class="bg-gradient"></div>
+        <!-- Large gradient orbs -->
+        <div class="bg-gradient">
+            <div class="gradient-orb"></div>
+            <div class="gradient-orb"></div>
+            <div class="gradient-orb"></div>
+        </div>
+        
+        <!-- Perspective grid -->
         <div class="grid-overlay"></div>
-        <!-- Clean floating dots -->
+        
+        <!-- Geometric shapes -->
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
-        <!-- Aurora lines -->
+        
+        <!-- Light beams -->
         <div class="glow-orb"></div>
         <div class="glow-orb"></div>
-        <!-- Moving accent lines -->
+        
+        <!-- Flowing lines -->
         <div class="accent-line"></div>
         <div class="accent-line"></div>
         <div class="accent-line"></div>
-        <!-- Subtle glow spots -->
+        
+        <!-- Pulsing nodes -->
         <div class="glow-spot"></div>
         <div class="glow-spot"></div>
+        
+        <!-- Connection line -->
+        <div class="connect-line"></div>
     </div>
 
     <!-- Navigation -->
