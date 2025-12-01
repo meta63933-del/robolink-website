@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboLink | Privacy-First DeFi Automation</title>
+    <meta name="description" content="Trade in silence. Execute in certainty. RoboLink brings robotics-grade automation to DeFi, fully on-chain and fully private.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #030712;
+            color: #f3f4f6;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Clean Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Smooth gradient waves */
+        .bg-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, transparent 0%, rgba(147, 51, 234, 0.05) 50%, transparent 100%),
+                linear-gradient(45deg, rgba(168, 85, 247, 0.03) 0%, transparent 50%);
+            animation: gradientShift 20s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        /* Animated grid lines */
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: gridScroll 30s linear infinite;
+        }
+
+        @keyframes gridScroll {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(100px, 100px);
+            }
+        }
+
+        /* Floating dots - clean and sharp */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #a855f7;
+            border-radius: 50%;
+            opacity: 0;
+            animation: dotFloat 15s infinite;
+        }
+
+        .particle:nth-child(1) {
+            top: 20%;
+            left: 20%;
+            animation-duration: 18s;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            top: 60%;
+            right: 30%;
+            animation-duration: 22s;
+            animation-delay: 5s;
+        }
+
+        .particle:nth-child(3) {
+            bottom: 30%;
+            left: 40%;
+            animation-duration: 20s;
+            animation-delay: 10s;
+        }
+
+        .particle:nth-child(4) {
+            top: 40%;
+            right: 20%;
+            animation-duration: 24s;
+            animation-delay: 3s;
+        }
+
+        .particle:nth-child(5) {
+            bottom: 50%;
+            left: 60%;
+            animation-duration: 19s;
+            animation-delay: 7s;
+        }
+
+        @keyframes dotFloat {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(100px, -100px);
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.6;
+            }
+        }
+
+        /* Aurora lines - smooth and sharp */
+        .glow-orb {
+            position: absolute;
+            width: 2px;
+            height: 400px;
+            background: linear-gradient(to bottom, transparent, rgba(168, 85, 247, 0.3), transparent);
+            animation: auroraMove 25s ease-in-out infinite;
+        }
+
+        .glow-orb:nth-child(6) {
+            top: -200px;
+            left: 20%;
+            animation-delay: 0s;
+            transform: rotate(15deg);
+        }
+
+        .glow-orb:nth-child(7) {
+            top: 30%;
+            right: 25%;
+            animation-delay: 8s;
+            transform: rotate(-20deg);
+        }
+
+        @keyframes auroraMove {
+            0%, 100% {
+                transform: translateY(0) rotate(15deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(100px) rotate(15deg);
+                opacity: 0.6;
+            }
+        }
+
+        /* Accent lines */
+        .accent-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(168, 85, 247, 0.4), transparent);
+            animation: lineSlide 15s ease-in-out infinite;
+        }
+
+        .accent-line:nth-child(8) {
+            width: 300px;
+            top: 15%;
+            left: -300px;
+            animation-delay: 0s;
+        }
+
+        .accent-line:nth-child(9) {
+            width: 400px;
+            top: 45%;
+            right: -400px;
+            animation-delay: 7s;
+        }
+
+        .accent-line:nth-child(10) {
+            width: 250px;
+            top: 75%;
+            left: -250px;
+            animation-delay: 14s;
+        }
+
+        @keyframes lineSlide {
+            0% {
+                transform: translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 400px));
+                opacity: 0;
+            }
+        }
+
+        /* Subtle glow spots - sharp edges */
+        .glow-spot {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: spotPulse 10s ease-in-out infinite;
+        }
+
+        .glow-spot:nth-child(11) {
+            top: 10%;
+            right: 15%;
+            animation-delay: 0s;
+        }
+
+        .glow-spot:nth-child(12) {
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 5s;
+        }
+
+        @keyframes spotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.8;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #a855f7, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #a855f7;
+        }
+
+        .btn-primary {
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(to right, #9333ea, #a855f7);
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            color: #d1d5db;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: rgba(3, 7, 18, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.75rem;
+            color: #d1d5db;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 1rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: heroShimmer 12s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes heroShimmer {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #a855f7, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 5rem;
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #a855f7);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-gradient:hover::before {
+            left: 100%;
+        }
+
+        .btn-gradient:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Feature Cards - 4 items for symmetry */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1rem;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0), rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-8px);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card svg {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 1rem;
+        }
+
+        .section-alt {
+            background: rgba(17, 24, 39, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #9ca3af;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* How It Works - 4 steps */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 1rem;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0), rgba(168, 85, 247, 0.3), rgba(168, 85, 247, 0));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .step:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-8px);
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15);
+        }
+
+        .step:hover::before {
+            opacity: 1;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(to right, #9333ea, #a855f7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step p {
+            color: #9ca3af;
+        }
+
+        /* Privacy Section */
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .privacy-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .privacy-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .privacy-icon.problem {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .privacy-icon.solution {
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+        }
+
+        .privacy-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-content p {
+            color: #9ca3af;
+        }
+
+        .protection-list {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .protection-list h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .protection-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(17, 24, 39, 0.5);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .check-icon {
+            width: 24px;
+            height: 24px;
+            color: #a855f7;
+            flex-shrink: 0;
+        }
+
+        /* Example Section - Improved */
+        .example-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 1.5rem;
+            padding: 3rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .example-label {
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #c084fc;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-display {
+            background: rgba(17, 24, 39, 0.9);
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .code-display code {
+            color: #c084fc;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .flow-arrow svg {
+            width: 40px;
+            height: 40px;
+            color: #a855f7;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .result-box {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .result-box h4 {
+            color: #4ade80;
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(17, 24, 39, 0.5);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            align-items: flex-start;
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .result-item svg {
+            width: 24px;
+            height: 24px;
+            color: #4ade80;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .result-item p {
+            color: #d1d5db;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section - Better centered */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #9ca3af;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .faq-answer.active {
+            max-height: 300px;
+            padding: 0 2rem 1.5rem 2rem;
+        }
+
+        .plus-icon {
+            width: 24px;
+            height: 24px;
+            color: #a855f7;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .plus-icon.active {
+            transform: rotate(45deg);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(to right, rgba(107, 33, 168, 0.2), rgba(168, 85, 247, 0.2));
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #a855f7;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 4rem;
+            }
+            .privacy-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+            .features {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .steps {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="bg-gradient"></div>
+        <div class="grid-overlay"></div>
+        <!-- Clean floating dots -->
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <!-- Aurora lines -->
+        <div class="glow-orb"></div>
+        <div class="glow-orb"></div>
+        <!-- Moving accent lines -->
+        <div class="accent-line"></div>
+        <div class="accent-line"></div>
+        <div class="accent-line"></div>
+        <!-- Subtle glow spots -->
+        <div class="glow-spot"></div>
+        <div class="glow-spot"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:32px;height:32px;color:#a855f7">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <span>RoboLink</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#faq">FAQ</a>
+                <button class="btn-primary">Launch App (Coming Soon)</button>
+            </div>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#how-it-works">How It Works</a>
+            <a href="#privacy">Privacy</a>
+            <a href="#faq">FAQ</a>
+            <button class="btn-primary" style="width:100%;margin-top:1rem">Launch App (Coming Soon)</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>
+                Trade in silence.<br>
+                <span class="gradient-text">Execute in certainty.</span>
+            </h1>
+            <p>RoboLink brings robotics-grade automation to DeFi, fully on-chain and fully private.</p>
+            
+            <div class="hero-buttons">
+                <button class="btn-large btn-gradient">Launch App (Coming Soon)</button>
+                <button class="btn-large btn-glass">Read Whitepaper</button>
+            </div>
+
+            <div class="features">
+                <div class="card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#a855f7">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <h3>Zero-Knowledge</h3>
+                    <p>Encrypted strategies, invisible execution</p>
+                </div>
+                <div class="card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#a855f7">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <h3>24/7 Automation</h3>
+                    <p>Never miss an opportunity again</p>
+                </div>
+                <div class="card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#a855f7">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <h3>Non-Custodial</h3>
+                    <p>Your keys, your funds, always</p>
+                </div>
+                <div class="card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color:#a855f7">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                    <h3>Full Privacy</h3>
+                    <p>Your strategies remain hidden until execution</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="section-alt">
+        <div class="container">
+            <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+            <p class="section-subtitle">Set up automated trading strategies in four simple steps</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Set Your Rule</h3>
+                    <p>Define your trading strategy via Telegram or the dApp. Simple, intuitive, powerful.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Encrypt & Deploy</h3>
+                    <p>Your strategy is encrypted client-side. Nobody can see your trading rules.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>RoboLink Watches</h3>
+                    <p>Our encrypted agents monitor the market 24/7, watching for your conditions.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Execute On-Chain</h3>
+                    <p>When conditions are met, RoboLink executes your transaction instantly.</p>
+                </div>
+            </div>
+
+            <p style="text-align:center;margin-top:3rem;font-size:1.25rem;font-weight:600">
+                You set the rules. RoboLink executes them <span class="gradient-text">without ever knowing what they are.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy">
+        <div class="container">
+            <div class="privacy-grid">
+                <div>
+                    <h2 class="section-title" style="text-align:left">Why Privacy <span class="gradient-text">Matters</span></h2>
+                    
+                    <div class="privacy-item">
+                        <div class="privacy-icon problem">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <div class="privacy-content">
+                            <h3>The Problem</h3>
+                            <p>Orders, triggers, and strategies are visible on-chain without privacy. This enables frontrunning, copytrading, and price manipulation, especially with microcaps.</p>
+                        </div>
+                    </div>
+
+                    <div class="privacy-item">
+                        <div class="privacy-icon solution">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <div class="privacy-content">
+                            <h3>The Solution</h3>
+                            <p>With RoboLink, your rules remain hidden until the exact moment of execution. Full transparency of results, full privacy of intent.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="protection-list">
+                    <h3>Protection Against</h3>
+                    <div class="protection-item">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Front-running attacks</span>
+                    </div>
+                    <div class="protection-item">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Copy trading bots</span>
+                    </div>
+                    <div class="protection-item">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Price manipulation</span>
+                    </div>
+                    <div class="protection-item">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>MEV extraction</span>
+                    </div>
+                    <div class="protection-item">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Strategy leakage</span>
+                    </div>
+                    <div class="protection-item">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Sandwich attacks</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Example Section -->
+    <section class="section-alt">
+        <div class="container">
+            <h2 class="section-title">See It In <span class="gradient-text">Action</span></h2>
+            
+            <div class="example-box">
+                <div class="example-label">Your Trading Strategy</div>
+                
+                <div class="code-display">
+                    <code>Buy [Coin] when ETH &lt; $3,100 → Sell at $3,400</code>
+                </div>
+
+                <div class="flow-arrow">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </div>
+
+                <div class="result-box">
+                    <h4>What Happens Next</h4>
+                    
+                    <div class="result-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p>RoboLink executes this automatically while <strong>nobody knows it was you</strong></p>
+                    </div>
+                    
+                    <div class="result-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p>Only the on-chain swap is visible, <strong>not the strategy</strong></p>
+                    </div>
+                    
+                    <div class="result-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p>Your trading edge remains <strong>completely private</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(0)">
+                        <span>Is RoboLink custodial?</span>
+                        <svg class="plus-icon" id="icon-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-0">
+                        No. Funds remain in the user's wallet or in a smart wallet they control themselves.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(1)">
+                        <span>Can RoboLink read my strategy?</span>
+                        <svg class="plus-icon" id="icon-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-1">
+                        No. All rules are encrypted before they reach the cloud.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(2)">
+                        <span>What if the server goes offline?</span>
+                        <svg class="plus-icon" id="icon-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-2">
+                        The agent infrastructure supports failover; future versions will run fully decentralized.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(3)">
+                        <span>When does $RBL go live?</span>
+                        <svg class="plus-icon" id="icon-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-3">
+                        During the Beta phase. Distribution via operator rewards and community airdrop.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(4)">
+                        <span>Is this legal in terms of privacy?</span>
+                        <svg class="plus-icon" id="icon-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-4">
+                        Yes. RoboLink uses encryption and not anonymizing mixers. Everything remains transparent and compliant.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(5)">
+                        <span>Does RoboLink support multiple chains?</span>
+                        <svg class="plus-icon" id="icon-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-5">
+                        Launches on Ethereum and Arbitrum, with multi-chain expansions later.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(6)">
+                        <span>Can I manually intervene?</span>
+                        <svg class="plus-icon" id="icon-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-6">
+                        Yes. Each rule can be paused or removed via Telegram or the dApp.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(7)">
+                        <span>How are fees distributed?</span>
+                        <svg class="plus-icon" id="icon-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-7">
+                        60% to executors, 30% to stakers, 10% burn.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(8)">
+                        <span>What happens with faulty execution?</span>
+                        <svg class="plus-icon" id="icon-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer" id="answer-8">
+                        The operator stake is slashed. User funds always remain safe.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Trade with <span class="gradient-text">Privacy</span>?</h2>
+            <p>Join the future of private, automated DeFi trading</p>
+            <div class="cta-buttons">
+                <button class="btn-large btn-gradient">Launch App (Coming Soon)</button>
+                <button class="btn-large btn-glass">Join Community</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom:1rem">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:32px;height:32px;color:#a855f7">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <span>RoboLink</span>
+                    </div>
+                    <p style="color:#9ca3af;max-width:400px">Privacy-first DeFi automation. Trade in silence, execute in certainty.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Whitepaper</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Telegram</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 RoboLink. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function toggleFaq(index) {
+            const answer = document.getElementById('answer-' + index);
+            const icon = document.getElementById('icon-' + index);
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+
+        // Smooth Parallax Effect
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const grid = document.querySelector('.grid-overlay');
+                    
+                    if (grid) {
+                        grid.style.transform = `translate(${scrollY * 0.05}px, ${scrollY * 0.05}px)`;
+                    }
+                    
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>
