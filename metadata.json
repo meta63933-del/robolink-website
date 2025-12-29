@@ -2,5 +2,11 @@
   "name": "RoboLink",
   "symbol": "RBL",
   "description": "RoboLink brings robotics-grade automation to DeFi, fully on-chain and fully private.",
-  "image": "https://robolink.io/logo.png"
+  "image": "https://robolink.io/logo.png",
+  "external_url": "https://robolink.io",
+  "properties": {
+    "website": "https://robolink.io",
+    "telegram": "https://t.me/RoboLink_Portal",
+    "twitter": "https://twitter.com/RoboLink_IO"
+  }
 }
